@@ -1,19 +1,23 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Row, Col, Container } from 'react-bootstrap'
 import Profile from '../../assets/images/profile.png'
+import { HomeStyles } from './homeStyles'
+import { BsWhatsapp, BsDownload } from 'react-icons/bs'
 
 export default function Home () {
   return (
-    <Container className='mt-2'>
-      <Row fluid="lg">
-        <Col lg={6}>
-          <h3>Hi, I'm Anthony</h3>
-          <h1>Web developer</h1>
-          <Button className='mx-auto p-2' variant='primary'>Cv</Button>
-          <Button className='mx-auto p-2' variant='info'>Contact me</Button>
-        </Col>
-        <Col lg={6}><img src={Profile}/></Col>
-      </Row>
-    </Container>
+    <HomeStyles className='text-center'>
+      <Container fluid>
+        <Row className='d-flex align-content-center justify-content-lg-center' fluid="lg">
+          <Col className='text-header' lg={6}>
+            <h3>Hi, I'm Anthony Alvarez</h3>
+            <h1>Web developer</h1>    
+            <a className='btn cv'>Download my cv <span><BsDownload/></span></a>
+            <a className='btn contact'>Contact me <span><BsWhatsapp/></span></a>
+          </Col>
+          <Col lg={6}><img src={Profile}/></Col>
+        </Row>
+      </Container>
+    </HomeStyles>
   )
 }

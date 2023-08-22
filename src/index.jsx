@@ -1,13 +1,19 @@
 import NavBar from './components/layout/navbar/nav'
-import Home from './components/home/home'
+import Header from './components/header/header'
+import About from './components/about/about'
 import Experience from './components/experience/experience'
+import Contact from './components/contact/contact'
+import Footer from './components/layout/footer/footer'
 
 function Index () {
   return (
     <>
       <NavBar />
-      <Home />
+      <Header />
+      <About />
       <Experience />
+      <Contact />
+      <Footer />
     </>
   )
 }

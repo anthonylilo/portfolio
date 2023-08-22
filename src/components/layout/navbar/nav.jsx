@@ -12,8 +12,8 @@ function NavBar() {
                 <NavStyles.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         <a className='nav-link active' to={'/'}>HOME</a>
+                        <a className='nav-link second-color' to={'/'}>ABOUT</a>
                         <a className='nav-link first-color' to={'/'}>EXPERIENCE</a>
-                        <a className='nav-link second-color' to={'/'}>ME</a>
                         <a className='nav-link third-color' to={'/'}>CONTACT</a>
                         <a className='nav-link third-color' to={'/'}>EN</a>
                     </Nav>

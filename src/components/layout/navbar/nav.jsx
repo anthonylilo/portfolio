@@ -1,4 +1,4 @@
-import {NavStyles} from './navStyles'
+import {NavStyles} from './NavStyles'
 import {Container, Nav} from 'react-bootstrap'
 
 function NavBar() {

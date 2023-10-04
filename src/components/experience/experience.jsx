@@ -1,6 +1,6 @@
-import {ExperienceStyle} from './experienceStyle'
+import {ExperienceStyle} from './ExperienceStyle'
 import {Button, Card, Container} from 'react-bootstrap'
-import Profile from '../../assets/images/profile.png'
+import Profile from '../../Assets/Images/Profile.png'
 
 export default function Experience() {
     return (

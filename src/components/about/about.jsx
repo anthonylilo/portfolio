@@ -1,5 +1,5 @@
 import { Container } from 'react-bootstrap'
-import { AboutStyles } from './aboutStyle'
+import { AboutStyles } from './AboutStyle'
 
 export default function About (){
   return (

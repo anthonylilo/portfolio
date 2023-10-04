@@ -1,9 +1,9 @@
-import NavBar from './components/layout/navbar/nav'
-import Header from './components/header/header'
-import About from './components/about/about'
-import Experience from './components/experience/experience'
-import Contact from './components/contact/contact'
-import Footer from './components/layout/footer/footer'
+import NavBar from './Components/Layout/Navbar/Nav'
+import Header from './Components/Header/Header'
+import About from './Components/About/About'
+import Experience from './Components/Experience/Experience'
+import Contact from './Components/Contact/Contact'
+import Footer from './Components/Layout/Footer/Footer'
 
 function Index () {
   return (

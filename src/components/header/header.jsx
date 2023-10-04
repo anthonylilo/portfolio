@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import {Row, Col, Container} from 'react-bootstrap'
-import {HeaderStyles} from './headerStyles'
+import {HeaderStyles} from './HeaderStyles'
 export default function Header() {
     return (
         <HeaderStyles className='text-center'>

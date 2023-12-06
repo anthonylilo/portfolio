@@ -1,9 +1,11 @@
-import NavBar from './Components/Layout/Navbar/Nav'
-import Header from './Components/Header/Header'
-import About from './Components/About/About'
-import Experience from './Components/Experience/Experience'
-import Contact from './Components/Contact/Contact'
-import Footer from './Components/Layout/Footer/Footer'
+import NavBar from './components/Layout/Navbar/Nav'
+import Header from './components/Header/Header'
+import About from './components/About/About'
+import Experience from './components/experience/experience'
+import Projects from './components/projects/projects'
+import Education from './components/education/education'
+import Hire from './components/hire/hire'
+import Footer from './components/Layout/Footer/Footer'
 
 function Index () {
   return (
@@ -12,7 +14,9 @@ function Index () {
       <Header />
       <About />
       <Experience />
-      <Contact />
+      <Projects />
+      <Education />
+      <Hire />
       <Footer />
     </>
   )

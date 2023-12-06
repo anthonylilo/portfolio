@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ExperienceStyle = styled.section`
+export const ProjectsStyle = styled.section`
   text-align: center;
   display: flex;
   flex-direction: column;

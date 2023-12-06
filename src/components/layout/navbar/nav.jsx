@@ -1,26 +1,34 @@
-import {NavStyles} from './NavStyles'
-import {Container, Nav} from 'react-bootstrap'
-
+import { NavStyles } from "./NavStyles";
+import{GiHamburgerMenu} from 'react-icons/gi'
 function NavBar() {
-    return (
-        <NavStyles expand="lg">
-            <Container fluid="fluid">
-                <NavStyles.Brand>
-                    <a href="/">Anthonylilo</a>
-                </NavStyles.Brand>
-                <NavStyles.Toggle className="w-100 m-2" aria-controls="responsive-navbar-nav"/>
-                <NavStyles.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto">
-                        <a className='nav-link active' to={'/'}>HOME</a>
-                        <a className='nav-link second-color' to={'/'}>ABOUT</a>
-                        <a className='nav-link first-color' to={'/'}>EXPERIENCE</a>
-                        <a className='nav-link third-color' to={'/'}>CONTACT</a>
-                        <a className='nav-link third-color' to={'/'}>EN</a>
-                    </Nav>
-                </NavStyles.Collapse>
-            </Container>
-        </NavStyles>
-    )
+  return (
+    <NavStyles>
+      <span className="navbar-logo">Anthonylilo</span>
+      <div className="nav-burger">
+        <GiHamburgerMenu />
+      </div>
+      <div className="nav-items">
+        <a href="#" className="navbar-brand">
+          HOME
+        </a>
+        <a href="#" className="navbar-brand">
+          ABOUT ME
+        </a>
+        <a href="#" className="navbar-brand">
+          EXPERIENCE
+        </a>
+        <a href="#" className="navbar-brand">
+          PROJECTS
+        </a>
+        <a href="#" className="navbar-brand">
+          EDUTACTION
+        </a>
+        <a href="#" className="navbar-brand">
+          HIRE ME
+        </a>
+      </div>
+    </NavStyles>
+  );
 }
 
-export default NavBar
+export default NavBar;

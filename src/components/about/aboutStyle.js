@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
 export const AboutStyles = styled.section`
-  background-color: #3752A6;
+  text-align: center;
+  margin: 2%;
 `

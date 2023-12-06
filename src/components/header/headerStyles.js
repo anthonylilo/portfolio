@@ -1,22 +1,37 @@
 import styled from 'styled-components'
+import imageBackground from '../../Assets/Images/fondo-header.webp'
 
 export const HeaderStyles = styled.header `
-  background-color: #090A26;
+  background-image: url(${imageBackground});
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
   color: #fff;
-  height: 95vh;
+  height: 70vh;
 
-  .container-fluid, .row{
+  .container{
+    width: 50%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
 
-  .text-header{
-    margin:auto;
-
-    h3{
-      font-size: 3rem;
-    }
-    h1{
-      font-size: 5rem;
-    }
+  h1{
+    font-size: 3rem;
   }
+
+  h3{
+    font-size: 1.5rem;
+  }
+  
+  .btn-primary{
+    background-color: #fff;
+    color: #000;
+    text-decoration: none;
+    padding: 10px 40px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
 `

@@ -1,17 +1,10 @@
-import { Container } from 'react-bootstrap'
 import { AboutStyles } from './AboutStyle'
 
 export default function About (){
   return (
     <AboutStyles className='text-center'>
-      <Container fluid="fluid">
-        <h1>About me</h1>
-        <h3>What do you want to know? <strong>My skills, my experience, hired me</strong></h3>
-        <a className='btn btn-primary' href='#'>Skills</a>
-        <a className='btn btn-primary' href='#'>Experience</a>
-        <a className='btn btn-primary' href='#'>Hired me</a>
-        <h1>Skills no se si ocultar</h1>
-      </Container>
+        <h2>About me</h2>
+        <p>I can tell you many things about myself. Like the classic &quot;Where am I from,&quot; &quot;Where did I study?&quot; and the best of all, I can tell you the even more classic &quot;I am passionate about programming.&quot; So let&apos;s skip all that and go straight to what you want to know:</p>
     </AboutStyles>
   )
 }

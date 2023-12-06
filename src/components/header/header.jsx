@@ -1,20 +1,18 @@
 /* eslint-disable react/no-unescaped-entities */
-import {Row, Col, Container} from 'react-bootstrap'
-import {HeaderStyles} from './HeaderStyles'
+import { HeaderStyles } from "./HeaderStyles";
+import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa6";
+
 export default function Header() {
-    return (
-        <HeaderStyles className='text-center'>
-            <Container fluid="fluid">
-                <Row
-                    className='d-flex align-content-center justify-content-lg-center'
-                    fluid="lg">
-                    <Col className='text-header' lg={12}>
-                        <h3>Anthonylilo.</h3>
-                        <h1>Web developer</h1>
-                        <h3>Si, soy de esos que realizan un portafolio</h3>
-                    </Col>
-                </Row>
-            </Container>
-        </HeaderStyles>
-    )
+  return (
+    <HeaderStyles className="text-center">
+      <div className="container">
+        <h1>Web Developer</h1>
+        <h2>Si, soy de esos que hacen un portafolio.</h2>
+        <h3>
+          <FaInstagram /> <FaGithub /> <FaLinkedin />
+        </h3>
+        <a className="btn-primary" href="#">Experience</a>
+      </div>
+    </HeaderStyles>
+  );
 }

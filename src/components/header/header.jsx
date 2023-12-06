@@ -8,9 +8,9 @@ export default function Header() {
       <div className="container">
         <h1>Web Developer</h1>
         <h2>Si, soy de esos que hacen un portafolio.</h2>
-        <h3>
+        <span>
           <FaInstagram /> <FaGithub /> <FaLinkedin />
-        </h3>
+        </span>
         <a className="btn-primary" href="#">Experience</a>
       </div>
     </HeaderStyles>

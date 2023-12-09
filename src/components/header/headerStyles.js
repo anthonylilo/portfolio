@@ -48,6 +48,26 @@ export const HeaderStyles = styled.header`
   }
 
   @media screen and (max-width: 900px) {
-    
+    height: 90vh;
+    .container {
+      justify-content: end;
+      width: 100%;
+    }
+
+    h1{
+      font-size: 2.5rem;
+    }
+
+    h2{
+      font-size: 1.5rem;
+    }
+
+    span{
+      font-size: 3rem;
+    }
+
+    .btn-primary{
+      margin-bottom: 10%;
+    }
   }
 `;

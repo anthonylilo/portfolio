@@ -46,4 +46,8 @@ export const HeaderStyles = styled.header`
     font-weight: 700;
     font-size: 1.2rem;
   }
+
+  @media screen and (max-width: 900px) {
+    
+  }
 `;

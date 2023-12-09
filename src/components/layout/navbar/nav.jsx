@@ -1,13 +1,21 @@
-import { NavStyles } from "./NavStyles";
-import{GiHamburgerMenu} from 'react-icons/gi'
+import { NavStyles } from "./navStyles";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { useState } from "react";
 function NavBar() {
+  const [showNavbar, setShowNavbar] = useState(false);
+
+  const handleShowNavbar = () => {
+    setShowNavbar(!showNavbar);
+  };
   return (
     <NavStyles>
-      <span className="navbar-logo">Anthonylilo</span>
-      <div className="nav-burger">
-        <GiHamburgerMenu />
+      <div className="container">
+        <span className="navbar-logo">Anthonylilo</span>
+        <div className="nav-burger" onClick={handleShowNavbar}>
+          <GiHamburgerMenu />
+        </div>
       </div>
-      <div className="nav-items">
+      <div className={`nav-items  ${showNavbar && 'active'}`}>
         <a href="#" className="navbar-brand">
           HOME
         </a>

@@ -1,0 +1,72 @@
+.experienceItemModal {
+  background-color: #000;
+  color: #fff;
+  width: 18rem;
+  min-height: 33rem;
+  z-index: 4;
+  padding: 2rem;
+  border-radius: 2.5rem;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  border: none;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  animation: 0.75s cubic-bezier(0.25, 1, 0.3, 1) circle-in-center both;
+}
+.experienceItemModal::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.experienceItemModal__header,
+.experienceItemModal__body,
+.experienceItemModal__footer {
+  width: 100%;
+}
+.experienceItemModal__header {
+  height: 20%;
+}
+.experienceItemModal__body {
+  height: 65%;
+  padding: 0.5rem;
+}
+.experienceItemModal__footer {
+  height: 15%;
+}
+.experienceItemModal__title {
+  font-size: 2rem;
+}
+.experienceItemModal__date {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+.experienceItemModal__list {
+  line-height: 1.3rem;
+  padding: 0.5rem;
+}
+.experienceItemModal__button {
+  background-color: #fff;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.7rem;
+  font-size: 1.1rem;
+  color: #000;
+  cursor: pointer;
+}
+.experienceItemModal__button:hover {
+  background-color: rgba(255,255,255, 0.9);
+}
+@media (min-width: 768px) {
+  .experienceItemModal {
+    width: 30rem;
+    padding: 3rem;
+  }
+}
+@keyframes circle-in-center {
+  from {
+    clip-path: circle(0%);
+  }
+  to {
+    clip-path: circle(125%);
+  }
+}

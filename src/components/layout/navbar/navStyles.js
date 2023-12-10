@@ -7,6 +7,7 @@ export const NavStyles = styled.nav`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  z-index: 2;
   height: 4rem;
   width: 100%;
   top: 0;

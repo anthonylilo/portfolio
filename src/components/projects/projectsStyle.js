@@ -15,7 +15,6 @@ export const ProjectsStyle = styled.section`
   .container__filter {
     display: flex;
     align-items: center;
-    width: 100%;
     height: 50px;
     padding: 1%;
     color: #fff;

@@ -1,4 +1,0 @@
-Pasar los nombres de las carpetas en mayusculas
-Experience.jsx
-
-No se que hace esto acá, pero me pagas las cuentas :p (Drupal)

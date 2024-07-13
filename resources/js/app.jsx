@@ -1,14 +1,14 @@
-import "./bootstrap";
-import { InertiaApp } from "@inertiajs/inertia-react";
-import React from "react";
+import { createInertiaApp } from "@inertiajs/inertia-react";
 import { render } from "react-dom";
+import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 
-const app = document.getElementById("app");
-
-render(
-    <InertiaApp
-        initialPage={JSON.parse(app.dataset.page)}
-        resolveComponent={(name) => require(`./Pages/${name}`).default}
-    />,
-    app
-);
+createInertiaApp({
+    resolve: (name) =>
+        resolvePageComponent(
+            `./Pages/${name}.jsx`,
+            import.meta.glob("./Pages/**/*.jsx")
+        ),
+    setup({ el, App, props }) {
+        render(<App {...props} />, el);
+    },
+});

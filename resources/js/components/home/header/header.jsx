@@ -11,7 +11,7 @@ export default function Header() {
         <span>
           <FaInstagram /> <FaGithub /> <FaLinkedin />
         </span>
-        <a className="btn-primary" href="#">Experience</a>
+        <a className="btn-primary" href="#">Download cv</a>
       </div>
     </HeaderStyles>
   );

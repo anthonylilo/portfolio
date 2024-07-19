@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 import ExperienceItemModal from "./modal/experienceItemModal";
-import { EXPERIENCES } from "../../../constants/experiences";
+import { EXPERIENCES } from "../../../../constants/experiences";
 import { ExperienceStyle } from "./experienceStyle";
 
 const Experience = () => {

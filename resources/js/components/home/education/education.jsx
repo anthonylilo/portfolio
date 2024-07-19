@@ -2,7 +2,7 @@ import { EducationStyle } from "./educationStyle";
 import { useState } from "react";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import CarouselItem from "./carousel/carouselItem";
-import { EDUCATION } from "../../../constants/education";
+import { EDUCATION } from "../../../../constants/education";
 
 const Education = () => {
   const [activeSlide, setActiveSlide] = useState(1);

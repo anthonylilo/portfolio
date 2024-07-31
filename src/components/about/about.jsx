@@ -1,4 +1,4 @@
-import { AboutStyles } from "./AboutStyle";
+import { AboutStyles } from "./aboutStyle";
 
 export default function About() {
   return (

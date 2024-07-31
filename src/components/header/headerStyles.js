@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import imageBackground from "../../Assets/Images/fondo-header.webp";
+import imageBackground from "../../assets/images/fondo-header.webp";
 
 export const HeaderStyles = styled.header`
   background-image: url(${imageBackground});

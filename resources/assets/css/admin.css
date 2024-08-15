@@ -1,0 +1,14 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.content{
+    width: 80%;
+    height: 100%;
+}

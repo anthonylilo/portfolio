@@ -9,9 +9,9 @@ createInertiaApp({
             `./${name}.jsx`,
             import.meta.glob(["./Pages/**/*.jsx", "./components/**/*.jsx"])
         );
-        page.default.layout =
-            page.default.layout ||
-            ((page) => <AdminLayout>{page}</AdminLayout>);
+        if (name.startsWith("Pages/admin")) {
+            page.default.layout = (page) => <AdminLayout>{page}</AdminLayout>;
+        }
 
         return page;
     },

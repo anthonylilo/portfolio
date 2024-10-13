@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <HeaderStyles className="text-center">
       <div className="container">
-        <h1>Web Developer</h1>
+        <h1>Backend Developer</h1>
         <h2>Si, soy de esos que hacen un portafolio.</h2>
         <span>
           <FaInstagram /> <FaGithub /> <FaLinkedin />

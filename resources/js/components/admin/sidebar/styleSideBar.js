@@ -28,7 +28,7 @@ export const SideBarStyles = styled.div`
         color: #fff;
         margin: 0;
         padding: 0;
-        height: 85%;
+        height: 80%;
         ul {
             padding: 0;
             height: 100%;
@@ -57,7 +57,11 @@ export const SideBarStyles = styled.div`
         }
     }
 
+    .sidebar-links ul li a.active {
+        background-color: #a6a6a6;}
+
     .sidebar-footer {
+        padding: 4%;
         display: flex;
         justify-content: center;
         align-items: center;

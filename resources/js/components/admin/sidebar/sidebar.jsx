@@ -8,9 +8,10 @@ import {
     FaEnvelope,
     FaSignOutAlt,
 } from "react-icons/fa";
-import { Link } from "@inertiajs/inertia-react";
+import { Link, usePage } from "@inertiajs/inertia-react";
 
 function SideBar() {
+    const { url } = usePage();
     return (
         <SideBarStyles>
             <div className="sidebar-logo">
@@ -20,32 +21,50 @@ function SideBar() {
             <div className="sidebar-links">
                 <ul>
                     <li>
-                        <Link href="/admin">
+                        <Link
+                            href="/admin"
+                            className={url === "/admin" ? "active" : ""}
+                        >
                             <FaHome /> Home
                         </Link>
                     </li>
                     <li>
-                        <Link href="/admin/about-me">
+                        <Link
+                            href="/admin/about-me"
+                            className={url === "/admin/about-me" ? "active" : ""}
+                        >
                             <FaBook /> About Me
                         </Link>
                     </li>
                     <li>
-                        <Link href="/admin/experience">
+                        <Link
+                            href="/admin/experience"
+                            className={url === "/admin/experience" ? "active" : ""}
+                        >
                             <FaCodeBranch /> Experience
                         </Link>
                     </li>
                     <li>
-                        <Link href="/admin/projects">
+                        <Link
+                            href="/admin/projects"
+                            className={url === "/admin/projects" ? "active" : ""}
+                        >
                             <FaCode /> Projects
                         </Link>
                     </li>
                     <li>
-                        <Link href="/admin/education">
+                        <Link
+                            href="/admin/education"
+                            className={url === "/admin/education" ? "active" : ""}
+                        >
                             <FaFileAlt /> Education
                         </Link>
                     </li>
                     <li>
-                        <Link href="/admin/hire-me">
+                        <Link
+                            href="/admin/hire-me"
+                            className={url === "/admin/hire-me" ? "active" : ""}
+                        >
                             <FaEnvelope /> Hire Me
                         </Link>
                     </li>

@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\AboutMeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('home/Home');
+    return Inertia::render('Pages/home/Home');
 });
 
 Route::get('/admin', function () {
@@ -13,7 +14,13 @@ Route::get('/admin', function () {
 
 Route::get('/admin/about-me', function () {
     return Inertia::render('components/admin/aboutme/AboutMeEdit');
-});
+})->name('admin.about-me');
+
+Route::post('/admin/about-me/post', [AboutMeController::class, 'store']);
+Route::get('/admin/about-me/data', [AboutMeController::class, 'getProfile']);
+Route::get('/admin/about-me/edit/{id}', [AboutMeController::class, 'edit']);
+Route::put('/admin/about-me/{id}', [AboutMeController::class, 'update']);
+Route::delete('/admin/about-me/delete/{id}', [AboutMeController::class, 'destroy']);
 
 Route::get('/admin/experience', function () {
     return Inertia::render('components/admin/experience/ExperienceEdit');

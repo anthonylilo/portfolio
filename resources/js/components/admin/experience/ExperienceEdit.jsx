@@ -3,7 +3,7 @@ import AdminLayout from "../../../Pages/admin/Admin";
 
 const ExperienceEdit = () => {
     return (
-        <div style={{ padding: "2%" }}>
+        <div className="content-edit">
             <h1>Edit Experience</h1>
             <p>Edit Experience</p>
         </div>

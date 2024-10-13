@@ -25,8 +25,19 @@ h2 {
   h1{
     font-size: 3.5rem;
   }
-  
+
   h2 {
     font-size: 3rem;
   }
+}
+
+.btn-primary {
+    border: none;
+    background-color: #fff;
+    color: #000;
+    text-decoration: none;
+    padding: 10px 40px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.2rem;
 }

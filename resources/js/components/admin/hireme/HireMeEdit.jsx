@@ -3,7 +3,7 @@ import AdminLayout from "../../../Pages/admin/Admin";
 
 const HireMeEdit = () => {
     return (
-        <div style={{ padding: "2%" }}>
+        <div className="content-edit">
             <h1>Edit Hire me</h1>
             <p>Edit Hire me</p>
         </div>

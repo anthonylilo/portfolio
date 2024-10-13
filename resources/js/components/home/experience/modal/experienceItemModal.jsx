@@ -2,47 +2,58 @@ import { forwardRef } from "react";
 import "./experienceItemStyle.css";
 import PropTypes from "prop-types";
 
-function ExperienceItemModal(props, ref) {
-  const { closeModal, closeModalOutside, experience } = props;
+const ExperienceItemModal = (props, ref) => {
+    const { closeModal, closeModalOutside, experience } = props;
 
-  const handleDialogClick = (e) => {
-    closeModalOutside(e.nativeEvent);
-  };
+    const handleDialogClick = (e) => {
+        closeModalOutside(e.nativeEvent);
+    };
 
-  return (
-    <dialog
-      className="experienceItemModal"
-      ref={ref}
-      onClick={handleDialogClick}
-    >
-      <div className="experienceItemModal__header">
-        <h2 className="experienceItemModal__title">{experience.company}</h2>
-        <h4>{experience.position}</h4>
-        <p className="experienceItemModal__date">{experience.period}</p>
-      </div>
-      <div className="experienceItemModal__body">
-        <ul className="experienceItemModal__list">
-          {experience.bullets.map((bullet, i) => (
-            <li className="experienceItemModal__listItem" key={i}>
-              {bullet}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="experienceItemModal__footer">
-        <button className="experienceItemModal__button" onClick={closeModal}>
-          Close
-        </button>
-      </div>
-    </dialog>
-  );
-}
-
-ExperienceItemModal.propTypes = {
-  closeModal: PropTypes.func.isRequired,
-  closeModalOutside: PropTypes.func.isRequired,
-  experience: PropTypes.object.isRequired,
+    return (
+        <dialog
+            className="experienceItemModal"
+            ref={ref}
+            onClick={handleDialogClick}
+        >
+            <div className="experienceItemModal__header">
+                <h2 className="experienceItemModal__title">
+                    {experience.company}
+                </h2>
+                <h4>{experience.position}</h4>
+                <p className="experienceItemModal__date">{experience.period}</p>
+            </div>
+            <div className="experienceItemModal__body">
+                <ul className="experienceItemModal__list">
+                    {experience.bullets.map((bullet, i) => (
+                        <li className="experienceItemModal__listItem" key={i}>
+                            {bullet}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div className="experienceItemModal__footer">
+                <button
+                    className="experienceItemModal__button"
+                    onClick={closeModal}
+                >
+                    Close
+                </button>
+            </div>
+        </dialog>
+    );
 };
 
 const NamedExperienceItemModal = forwardRef(ExperienceItemModal);
+
+NamedExperienceItemModal.propTypes = {
+    closeModal: PropTypes.func.isRequired,
+    closeModalOutside: PropTypes.func.isRequired,
+    experience: PropTypes.shape({
+        company: PropTypes.string.isRequired,
+        position: PropTypes.string.isRequired,
+        period: PropTypes.string.isRequired,
+        bullets: PropTypes.arrayOf(PropTypes.string).isRequired,
+    }).isRequired,
+};
+
 export default NamedExperienceItemModal;

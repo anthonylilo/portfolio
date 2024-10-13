@@ -37,16 +37,6 @@ export const HeaderStyles = styled.header`
         margin-block-end: 0.3em;
     }
 
-    .btn-primary {
-        background-color: #fff;
-        color: #000;
-        text-decoration: none;
-        padding: 10px 40px;
-        border-radius: 10px;
-        font-weight: 700;
-        font-size: 1.2rem;
-    }
-
     @media screen and (max-width: 900px) {
         height: 100vh;
         background-position: 70% 100%;

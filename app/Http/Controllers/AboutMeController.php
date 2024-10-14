@@ -25,7 +25,7 @@ class AboutMeController extends Controller
 
     public function getProfile()
     {
-        $aboutMe = AboutMe::first();
+        $aboutMe = AboutMe::all();
         return response()->json($aboutMe);
     }
 

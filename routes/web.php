@@ -13,13 +13,15 @@ Route::get('/admin', function () {
 });
 
 Route::get('/admin/about-me', function () {
-    return Inertia::render('components/admin/aboutme/AboutMeEdit');
+    return Inertia::render('components/admin/aboutme/AboutMe');
 })->name('admin.about-me');
 
 Route::post('/admin/about-me/post', [AboutMeController::class, 'store']);
 Route::get('/admin/about-me/data', [AboutMeController::class, 'getProfile']);
-Route::get('/admin/about-me/edit/{id}', [AboutMeController::class, 'edit']);
-Route::put('/admin/about-me/{id}', [AboutMeController::class, 'update']);
+
+Route::get('/admin/about-me/edit/{id}', [AboutMeController::class, 'edit'])->name('aboutMe.edit');
+Route::put('/admin/about-me/{id}', [AboutMeController::class, 'update'])->name('aboutMe.update');
+
 Route::delete('/admin/about-me/delete/{id}', [AboutMeController::class, 'destroy']);
 
 Route::get('/admin/experience', function () {

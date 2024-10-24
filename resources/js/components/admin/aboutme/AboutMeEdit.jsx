@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import AdminLayout from "../../../Pages/admin/Admin";
-import { Editor } from "@tinymce/tinymce-react";
+import EditorText from "../../modules/textEditor/Editor";
 import SelectOption from "../../modules/selectOption/SelectOption";
 import axios from "axios";
 import { usePage } from "@inertiajs/inertia-react";
 
 const AboutMeEdit = () => {
-    const { aboutMe } = usePage().props; // Obtener los props de Inertia
+    const { aboutMe } = usePage().props;
     const [content, setContent] = useState(aboutMe.profile || "");
     const [language, setLanguage] = useState(aboutMe.language || "");
 
@@ -47,15 +47,7 @@ const AboutMeEdit = () => {
             <h2>Edit About Me</h2>
             <form onSubmit={handleSubmit}>
                 <SelectOption onChange={handleLanguageChange} value={language} />
-                <Editor
-                    apiKey="your-api-key-here"
-                    value={content}
-                    init={{
-                        plugins: "lists",
-                        toolbar: "bullist numlist",
-                    }}
-                    onEditorChange={handleEditorChange}
-                />
+                <EditorText content={content} handleEditorChange={handleEditorChange} />
                 <input className="btn-primary" type="submit" value="Update" />
             </form>
         </div>

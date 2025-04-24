@@ -1,108 +1,72 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import AdminLayout from "../../../Pages/admin/Admin";
 import SelectOption from '../../modules/selectOption/SelectOption';
 import EditorText from "../../modules/textEditor/Editor";
 import Input from "../../modules/inputModule/InputModule";
-import TablesData from "../../modules/tables/TablesData";
-import { Inertia } from "@inertiajs/inertia";
+import { usePage } from "@inertiajs/inertia-react";
 
-const Experience = () => {
+const ExperienceEdit = () => {
+    const { experienceData } = usePage().props;
+    const baseUrl = `${window.location.origin}/storage/`;
     const [formData, setFormData] = useState({
-        language: "",
-        position: "",
-        company: "",
-        startDate: "",
-        endDate: "",
-        image: null,
-        description: ""
+        language: experienceData.language,
+        position: experienceData.position,
+        company: experienceData.company,
+        startDate: experienceData.start_date,
+        endDate: experienceData.end_date,
+        image: experienceData.image ? `${baseUrl}${experienceData.image}` : null,
+        description: experienceData.description
     });
-    const [experienceData, setExperienceData] = useState([]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Validaciones para contenido y lenguaje
-        if (!formData.description.trim() || !formData.language) {
-            alert("Description and language are required.");
+        // Validaciones locales
+        if (!formData.language.trim() || !formData.position.trim() || !formData.company.trim()) {
+            alert("Language, position, and company are required.");
             return;
         }
 
         try {
             const data = new FormData();
-            data.append("language", formData.language);
-            data.append("company", formData.company);
-            data.append("position", formData.position);
-            data.append("start_date", formData.startDate);
-            data.append("end_date", formData.endDate);
-            data.append("description", formData.description);
-            if (formData.image) {
+            data.append("language", formData.language.trim());
+            data.append("company", formData.company.trim());
+            data.append("position", formData.position.trim());
+            data.append("start_date", formData.startDate.trim());
+            data.append("end_date", formData.endDate?.trim() || ""); // Envía cadena vacía si no hay fecha
+            data.append("description", formData.description.trim());
+
+            // Adjuntar archivo solo si es un nuevo archivo
+            if (formData.image instanceof File) {
                 data.append("image", formData.image);
             }
 
-            // Realizar la solicitud POST con axios usando FormData
-            await axios.post("/admin/experience/post", data, {
+            console.log("FormData entries:");
+            for (const pair of data.entries()) {
+                console.log(`${pair[0]}: ${pair[1]}`);
+            }
+
+            // Enviar solicitud PUT
+            data.append('_method', 'PUT');
+
+            await axios.post(`/admin/experience/${experienceData.id}`, data, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             });
 
-            alert("Profile created successfully!");
 
-            // Reiniciar el formulario
-            setFormData({
-                language: "",
-                position: "",
-                company: "",
-                startDate: "",
-                endDate: "",
-                image: null,
-                description: ""
-            });
-            fetchData();
+            alert("Profile updated successfully!");
         } catch (error) {
-            if (error.response && error.response.data.errors) {
+            if (error.response?.data?.errors) {
                 const errors = Object.values(error.response.data.errors).flat().join(", ");
                 alert("Validation error(s): " + errors);
             } else {
                 console.error("Error submitting form:", error);
-                alert("There was an error creating the profile.");
+                alert("There was an error updating the profile.");
             }
         }
-    };
-
-    // Placeholder function for fetching data
-    const fetchData = useCallback(async () => {
-        try {
-            const response = await axios.get("/admin/experience/data");
-            setExperienceData(response.data);
-        } catch (error) {
-            console.error("Error fetching about me data:", error);
-        }
-    }, []);
-
-    // Placeholder function for deleting data
-    const handleDelete = useCallback((id) => {
-        if (confirm("Are you sure you want to delete this experience?")) {
-            axios.delete(`/admin/experience/delete/${id}`, {
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                }
-            })
-                .then(response => {
-                    alert("Experience deleted successfully!");
-                    fetchData();
-                })
-                .catch(error => {
-                    console.error("Error deleting record:", error);
-                    alert("There was an error deleting the profile.");
-                });
-        }
-    }, [fetchData]);
-
-    // Placeholder function for editing data
-    const handleEdit = (id) => {
-        Inertia.visit(`/admin/experience/edit/${id}`);
     };
 
     const handleInputChange = (event, name) => {
@@ -118,7 +82,7 @@ const Experience = () => {
 
     return (
         <div className="content-edit">
-            <h1>Create Experience</h1>
+            <h1>Edit Experience</h1>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <SelectOption
                     onChange={(event) => handleInputChange(event, 'language')}
@@ -152,10 +116,26 @@ const Experience = () => {
                     value={formData.endDate}
                     handleChange={(event) => handleInputChange(event, 'endDate')}
                 />
+
+                {formData.image && (
+                    <div className="image-preview">
+                        <img
+                            src={
+                                formData.image instanceof File
+                                    ? URL.createObjectURL(formData.image)
+                                    : formData.image
+                            }
+                            alt="Experience"
+                            style={{ maxWidth: '200px', maxHeight: '200px' }}
+                        />
+                    </div>
+                )}
+
                 <Input
                     labelText="Image"
                     type="file"
                     name="image"
+                    onChange={(e) => setFormData({ ...formData, image: e.target.files[0] })}
                     handleChange={(event) => handleInputChange(event, 'image')}
                 />
                 <EditorText
@@ -165,17 +145,10 @@ const Experience = () => {
 
                 <input className="btn-primary" type="submit" value="Submit" />
             </form>
-
-            <TablesData
-                data={experienceData}
-                fetchData={fetchData}
-                handleDelete={handleDelete}
-                handleEdit={handleEdit}
-            />
         </div>
     );
 };
 
-Experience.layout = (page) => <AdminLayout children={page} />;
+ExperienceEdit.layout = (page) => <AdminLayout children={page} />;
 
-export default Experience;
+export default ExperienceEdit;

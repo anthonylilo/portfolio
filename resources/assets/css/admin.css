@@ -1,4 +1,4 @@
-.container{
+.container {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -8,31 +8,31 @@
     flex-direction: row;
 }
 
-.content{
+.content {
     width: 80%;
     height: 100%;
 }
 
-.content-edit{
+.content-edit {
     padding: 2%;
 
-    form{
+    form {
         width: 100%;
     }
 
-    label{
+    label {
         font-size: 18px;
         margin: 1%;
     }
 
-    .btn-primary{
+    .btn-primary {
         margin: 1%;
     }
 }
 
 /** Select options **/
 
-.select-container{
+.select-container {
     display: flex;
     justify-content: center;
     position: relative;
@@ -41,7 +41,7 @@
     margin: 1%;
 }
 
-.select-box{
+.select-box {
     border: none;
     appearance: none;
     padding: 0 30px 0 15px;
@@ -51,7 +51,7 @@
     font-size: 20px;
 }
 
-.select-container .icon-container{
+.select-container .icon-container {
     width: 50px;
     height: 100%;
     position: absolute;
@@ -60,17 +60,20 @@
     align-items: center;
     justify-content: center;
     background-color: #0f0f0f;
-
 }
 
-.icon-container{
+.icon-container {
     font-size: 30px;
     color: white;
 }
 
 /** /Select options **/
 /** Tables **/
-.content-table{
+.tables-data {
+    overflow-x: auto;
+}
+
+.content-table {
     border-collapse: collapse;
     margin: 25px 0;
     min-width: 400px;
@@ -82,7 +85,7 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.content-table thead tr{
+.content-table thead tr {
     background-color: #2873ff;
     color: #ffffff;
     text-align: left;
@@ -90,18 +93,18 @@
 }
 
 .content-table th,
-.content-table td{
+.content-table td {
     padding: 12px 15px;
 }
 
-.content-table tbody tr{
+.content-table tbody tr {
     border-bottom: 1px solid #dddddd;
 }
 
-.content-table tbody tr:nth-of-type(even){
+.content-table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
 
-.content-table tbody tr:last-of-type{
+.content-table tbody tr:last-of-type {
     border-bottom: 2px solid #2873ff;
 }

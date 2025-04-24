@@ -12,35 +12,37 @@ const TablesData = ({ data, fetchData, handleDelete, handleEdit }) => {
     const columns = Object.keys(data[0]);
 
     return (
-        <table className="content-table">
-            <thead>
-                <tr>
-                    {columns.map((column) => (
-                        <th key={column}>{column.charAt(0).toUpperCase() + column.slice(1)}</th>
-                    ))}
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {data.map((item) => (
-                    <tr key={item.id}>
+        <div className="tables-data">
+            <table className="content-table">
+                <thead>
+                    <tr>
                         {columns.map((column) => (
-                            <td key={column}>
-                                {column === "profile" || column === "description" ? (
-                                    <div dangerouslySetInnerHTML={{ __html: item[column] }} />
-                                ) : (
-                                    item[column]
-                                )}
-                            </td>
+                            <th key={column}>{column.charAt(0).toUpperCase() + column.slice(1)}</th>
                         ))}
-                        <td>
-                            <button onClick={() => handleEdit(item.id)}>Edit</button>
-                            <button onClick={() => handleDelete(item.id)}>Delete</button>
-                        </td>
+                        <th>Actions</th>
                     </tr>
-                ))}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {data.map((item) => (
+                        <tr key={item.id}>
+                            {columns.map((column) => (
+                                <td key={column}>
+                                    {column === "profile" || column === "description" ? (
+                                        <div dangerouslySetInnerHTML={{ __html: item[column] }} />
+                                    ) : (
+                                        item[column]
+                                    )}
+                                </td>
+                            ))}
+                            <td>
+                                <button onClick={() => handleEdit(item.id)}>Edit</button>
+                                <button onClick={() => handleDelete(item.id)}>Delete</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
 };
 

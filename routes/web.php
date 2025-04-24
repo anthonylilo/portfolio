@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AboutMeController;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProgrammingLanguageController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -34,8 +37,14 @@ Route::put('/admin/experience/{id}', [ExperienceController::class, 'update'])->n
 Route::delete('/admin/experience/delete/{id}', [ExperienceController::class, 'destroy']);
 
 Route::get('/admin/projects', function () {
-    return Inertia::render('components/admin/projects/ProjectsEdit');
+    return Inertia::render('components/admin/projects/Projects');
 });
+
+Route::post('/admin/projects/post', [ProjectController::class, 'store']);
+Route::get('/admin/projects/data', [ProjectController::class, 'getProjects']);
+Route::get('/admin/projects/edit/{id}', [ProjectController::class, 'edit'])->name('experience.edit');
+Route::put('/admin/projects/{id}', [ProjectController::class, 'update'])->name('experience.update');
+Route::delete('/admin/projects/delete/{id}', [ProjectController::class, 'destroy']);
 
 Route::get('/admin/education', function () {
     return Inertia::render('components/admin/education/EducationEdit');
@@ -44,3 +53,6 @@ Route::get('/admin/education', function () {
 Route::get('/admin/hire-me', function () {
     return Inertia::render('components/admin/hireme/HireMeEdit');
 });
+
+Route::get('/admin/categories', [CategoryController::class, 'index']);
+Route::get('/admin/programming-languages', [ProgrammingLanguageController::class, 'index']);

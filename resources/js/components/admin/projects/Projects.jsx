@@ -1,23 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import axios from "axios";
 import AdminLayout from "../../../Pages/admin/Admin";
 import SelectOption from "../../modules/selectOption/SelectOption";
 import EditorText from "../../modules/textEditor/Editor";
 import Input from "../../modules/inputModule/InputModule";
-import { usePage } from "@inertiajs/inertia-react";
+import TablesData from "../../modules/tables/TablesData";
+import { Inertia } from "@inertiajs/inertia";
 
-const ProjectsEdit = () => {
-    const { projectData, programmingLanguageOptions, categoryOptions } = usePage().props;
-    const baseUrl = `${window.location.origin}/storage/`;
+const Projects = () => {
     const [formData, setFormData] = useState({
-        name: projectData.name || "",
-        language: projectData.language || "",
-        short_description: projectData.short_description || "",
-        links: projectData.links || [""],
-        programming_languages: projectData.programming_languages?.map(id => id) || [],
-        categories: projectData.categories?.map(id => id) || [],
-        image: projectData.image ? `${baseUrl}${projectData.image}` : null,
+        name: "",
+        links: [""],
+        programming_languages: [],
+        categories: [],
+        language: "",
+        image: null,
+        short_description: "",
     });
+
+    const [projectsData, setProjectsData] = useState([]);
+    const [languageOptions, setLanguageOptions] = useState([]);
+    const [categoryOptions, setCategoryOptions] = useState([]);
+    const [programmingLanguageOptions, setProgrammingLanguageOptions] = useState([]);
+
+    useEffect(() => {
+        fetchData();
+        fetchOptions();
+    }, []);
+
+    const fetchOptions = async () => {
+        try {
+            const [categories, languages] = await Promise.all([
+                axios.get("/admin/categories"),
+                axios.get("/admin/programming-languages")
+            ]);
+            setCategoryOptions(categories.data);
+            setProgrammingLanguageOptions(languages.data);
+        } catch (error) {
+            console.error("Error loading options:", error);
+        }
+    };
 
     const handleInputChange = (event, name) => {
         const value = event?.target
@@ -26,17 +48,23 @@ const ProjectsEdit = () => {
                 : event.target.value
             : event;
 
-        setFormData(prev => ({ ...prev, [name]: value }));
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleMultiSelectChange = (selectedIds, field) => {
+        setFormData((prev) => ({
+            ...prev,
+            [field]: selectedIds,
+        }));
     };
 
     const handleArrayChange = (value, index, name) => {
         const updated = [...formData[name]];
         updated[index] = value;
         setFormData({ ...formData, [name]: updated });
-    };
-
-    const handleMultiSelectChange = (selectedIds, field) => {
-        setFormData(prev => ({ ...prev, [field]: selectedIds }));
     };
 
     const addField = (name) => {
@@ -61,6 +89,11 @@ const ProjectsEdit = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        if (!formData.short_description.trim() || !formData.language || !formData.name.trim()) {
+            alert("Name, language and description are required.");
+            return;
+        }
+
         try {
             const data = new FormData();
             data.append("name", formData.name);
@@ -69,31 +102,77 @@ const ProjectsEdit = () => {
             data.append("links", JSON.stringify(formData.links));
             data.append("programming_languages", JSON.stringify(formData.programming_languages));
             data.append("categories", JSON.stringify(formData.categories));
-            if (formData.image instanceof File) {
+            if (formData.image) {
                 data.append("image", formData.image);
             }
 
-            data.append("_method", "PUT");
-
-            await axios.post(`/admin/projects/${projectData.id}`, data, {
-                headers: { "Content-Type": "multipart/form-data" },
+            await axios.post("/admin/projects/post", data, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
             });
 
-            alert("Project updated successfully!");
+            alert("Project created successfully!");
+
+            setFormData({
+                name: "",
+                links: [""],
+                programming_languages: [],
+                categories: [],
+                language: "",
+                image: null,
+                short_description: "",
+            });
+
+            fetchData();
         } catch (error) {
-            console.error("Error submitting form:", error);
-            alert("There was an error updating the project.");
+            if (error.response?.data?.errors) {
+                const errors = Object.values(error.response.data.errors).flat().join(", ");
+                alert("Validation error(s): " + errors);
+            } else {
+                console.error("Error submitting form:", error);
+                alert("There was an error creating the project.");
+            }
         }
+    };
+
+    const fetchData = useCallback(async () => {
+        try {
+            const response = await axios.get("/admin/projects/data");
+            setProjectsData(response.data);
+        } catch (error) {
+            console.error("Error fetching projects:", error);
+        }
+    }, []);
+
+    const handleDelete = useCallback((id) => {
+        if (confirm("Are you sure you want to delete this project?")) {
+            axios.delete(`/admin/projects/delete/${id}`)
+                .then(() => {
+                    alert("Project deleted successfully!");
+                    fetchData();
+                })
+                .catch((error) => {
+                    console.error("Error deleting project:", error);
+                    alert("There was an error deleting the project.");
+                });
+        }
+    }, [fetchData]);
+
+    const handleEdit = (id) => {
+        Inertia.visit(`/admin/projects/edit/${id}`);
     };
 
     return (
         <div className="content-edit">
-            <h1>Edit Project</h1>
+            <h1>Create Project</h1>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
+
                 <SelectOption
                     onChange={(event) => handleInputChange(event, "language")}
                     value={formData.language}
                 />
+
                 <Input
                     labelText="Project Name"
                     type="text"
@@ -101,21 +180,14 @@ const ProjectsEdit = () => {
                     value={formData.name}
                     handleChange={(e) => handleInputChange(e, "name")}
                 />
-                {formData.image && (
-                    <div className="image-preview">
-                        <img
-                            src={formData.image instanceof File ? URL.createObjectURL(formData.image) : formData.image}
-                            alt="Project"
-                            style={{ maxWidth: '200px', maxHeight: '200px' }}
-                        />
-                    </div>
-                )}
+
                 <Input
                     labelText="Image"
                     type="file"
                     name="image"
                     handleChange={(event) => handleInputChange(event, "image")}
                 />
+
                 <h3>Links</h3>
                 {formData.links.map((link, index) => (
                     <div key={index}>
@@ -146,6 +218,7 @@ const ProjectsEdit = () => {
                         <option key={cat.id} value={cat.id}>{cat.name}</option>
                     ))}
                 </select>
+
                 <EditorText
                     content={formData.short_description}
                     handleEditorChange={(newContent) => handleInputChange(newContent, "short_description")}
@@ -153,10 +226,17 @@ const ProjectsEdit = () => {
 
                 <input className="btn-primary" type="submit" value="Submit" />
             </form>
+
+            <TablesData
+                data={projectsData}
+                fetchData={fetchData}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
+            />
         </div>
     );
 };
 
-ProjectsEdit.layout = (page) => <AdminLayout children={page} />;
+Projects.layout = (page) => <AdminLayout children={page} />;
 
-export default ProjectsEdit;
+export default Projects;

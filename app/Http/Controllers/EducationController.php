@@ -117,14 +117,6 @@ class EducationController extends Controller
             if ($request->hasFile('image')) {
                 $imageFile = $request->file('image');
 
-                Log::info('Image file details:', [
-                    'is_valid' => $imageFile->isValid(),
-                    'type' => gettype($imageFile),
-                    'mime' => $imageFile->getMimeType(),
-                    'original' => $imageFile->getClientOriginalName(),
-                    'size' => $imageFile->getSize(),
-                ]);
-
                 if (!$imageFile->isValid()) {
                     throw new \Exception('Archivo de imagen no válido.');
                 }

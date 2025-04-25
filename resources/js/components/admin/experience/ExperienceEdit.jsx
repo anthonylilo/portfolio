@@ -34,17 +34,12 @@ const ExperienceEdit = () => {
             data.append("company", formData.company.trim());
             data.append("position", formData.position.trim());
             data.append("start_date", formData.startDate.trim());
-            data.append("end_date", formData.endDate?.trim() || ""); // Envía cadena vacía si no hay fecha
+            data.append("end_date", formData.endDate?.trim() || "");
             data.append("description", formData.description.trim());
 
             // Adjuntar archivo solo si es un nuevo archivo
             if (formData.image instanceof File) {
                 data.append("image", formData.image);
-            }
-
-            console.log("FormData entries:");
-            for (const pair of data.entries()) {
-                console.log(`${pair[0]}: ${pair[1]}`);
             }
 
             // Enviar solicitud PUT
@@ -64,7 +59,7 @@ const ExperienceEdit = () => {
                 alert("Validation error(s): " + errors);
             } else {
                 console.error("Error submitting form:", error);
-                alert("There was an error updating the profile.");
+                alert("There was an error updating the experience.");
             }
         }
     };

@@ -5,6 +5,7 @@ use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProgrammingLanguageController;
+use App\Http\Controllers\EducationController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -42,13 +43,19 @@ Route::get('/admin/projects', function () {
 
 Route::post('/admin/projects/post', [ProjectController::class, 'store']);
 Route::get('/admin/projects/data', [ProjectController::class, 'getProjects']);
-Route::get('/admin/projects/edit/{id}', [ProjectController::class, 'edit'])->name('experience.edit');
-Route::put('/admin/projects/{id}', [ProjectController::class, 'update'])->name('experience.update');
+Route::get('/admin/projects/edit/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
+Route::put('/admin/projects/{id}', [ProjectController::class, 'update'])->name('projects.update');
 Route::delete('/admin/projects/delete/{id}', [ProjectController::class, 'destroy']);
 
 Route::get('/admin/education', function () {
-    return Inertia::render('components/admin/education/EducationEdit');
+    return Inertia::render('components/admin/education/Education');
 });
+
+Route::post('/admin/education/post', [EducationController::class, 'store']);
+Route::get('/admin/education/data', [EducationController::class, 'getEducations']);
+Route::get('/admin/education/edit/{id}', [EducationController::class, 'edit'])->name('education.edit');
+Route::put('/admin/education/{id}', [EducationController::class, 'update'])->name('education.update');
+Route::delete('/admin/education/delete/{id}', [EducationController::class, 'destroy']);
 
 Route::get('/admin/hire-me', function () {
     return Inertia::render('components/admin/hireme/HireMeEdit');

@@ -1,3 +1,4 @@
+import { Inertia } from "@inertiajs/inertia";
 import { SideBarStyles } from "./styleSideBar";
 import {
     FaHome,
@@ -5,6 +6,7 @@ import {
     FaCodeBranch,
     FaCode,
     FaFileAlt,
+    FaUsers,
     FaEnvelope,
     FaSignOutAlt,
 } from "react-icons/fa";
@@ -12,6 +14,12 @@ import { Link, usePage } from "@inertiajs/inertia-react";
 
 function SideBar() {
     const { url } = usePage();
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        Inertia.post('/logout');
+    };
+
     return (
         <SideBarStyles>
             <div className="sidebar-logo">
@@ -21,50 +29,37 @@ function SideBar() {
             <div className="sidebar-links">
                 <ul>
                     <li>
-                        <Link
-                            href="/admin"
-                            className={url === "/admin" ? "active" : ""}
-                        >
+                        <Link href="/admin" className={url === "/admin" ? "active" : ""}>
                             <FaHome /> Home
                         </Link>
                     </li>
                     <li>
-                        <Link
-                            href="/admin/about-me"
-                            className={url === "/admin/about-me" ? "active" : ""}
-                        >
+                        <Link href="/admin/about-me" className={url === "/admin/about-me" ? "active" : ""}>
                             <FaBook /> About Me
                         </Link>
                     </li>
                     <li>
-                        <Link
-                            href="/admin/experience"
-                            className={url === "/admin/experience" ? "active" : ""}
-                        >
+                        <Link href="/admin/experience" className={url === "/admin/experience" ? "active" : ""}>
                             <FaCodeBranch /> Experience
                         </Link>
                     </li>
                     <li>
-                        <Link
-                            href="/admin/projects"
-                            className={url === "/admin/projects" ? "active" : ""}
-                        >
+                        <Link href="/admin/projects" className={url === "/admin/projects" ? "active" : ""}>
                             <FaCode /> Projects
                         </Link>
                     </li>
                     <li>
-                        <Link
-                            href="/admin/education"
-                            className={url === "/admin/education" ? "active" : ""}
-                        >
+                        <Link href="/admin/education" className={url === "/admin/education" ? "active" : ""}>
                             <FaFileAlt /> Education
                         </Link>
                     </li>
                     <li>
-                        <Link
-                            href="/admin/hire-me"
-                            className={url === "/admin/hire-me" ? "active" : ""}
-                        >
+                        <Link href="/admin/users" className={url === "/admin/users" ? "active" : ""}>
+                            <FaUsers /> Users
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/admin/hire-me" className={url === "/admin/hire-me" ? "active" : ""}>
                             <FaEnvelope /> Hire Me
                         </Link>
                     </li>
@@ -72,9 +67,9 @@ function SideBar() {
             </div>
             <hr />
             <div className="sidebar-footer">
-                <Link href="#">
+                <a href="#" onClick={handleLogout}>
                     <FaSignOutAlt /> Sign Out
-                </Link>
+                </a>
             </div>
         </SideBarStyles>
     );

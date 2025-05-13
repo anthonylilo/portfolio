@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
 import axios from "axios";
 import AdminLayout from "../../../Pages/admin/Admin";
-import SelectOption from "../../modules/selectOption/SelectOption";
-import Input from "../../modules/inputModule/InputModule";
-import TablesData from "../../modules/tables/TablesData";
+import SelectOption from "../../layouts/selectOption/SelectOption";
+import Input from "../../layouts/inputModule/InputModule";
+import TablesData from "../../layouts/tables/TablesData";
 import { Inertia } from "@inertiajs/inertia";
 
 const Education = () => {

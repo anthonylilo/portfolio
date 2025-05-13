@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AdminLayout from "../../../Pages/admin/Admin";
-import SelectOption from "../../modules/selectOption/SelectOption";
-import EditorText from "../../modules/textEditor/Editor";
-import Input from "../../modules/inputModule/InputModule";
+import SelectOption from "../../layouts/selectOption/SelectOption";
+import EditorText from "../../layouts/textEditor/Editor";
+import Input from "../../layouts/inputModule/InputModule";
 import { usePage } from "@inertiajs/inertia-react";
 
 const ProjectsEdit = () => {

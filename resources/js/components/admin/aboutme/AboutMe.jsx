@@ -2,9 +2,9 @@ import React, { useState, useCallback } from "react";
 import axios from "axios";
 import { Inertia } from "@inertiajs/inertia";
 import AdminLayout from "../../../Pages/admin/Admin";
-import EditorText from "../../modules/textEditor/Editor";
-import TablesData from "../../modules/tables/TablesData";
-import SelectOption from "../../modules/selectOption/SelectOption";
+import EditorText from "../../layouts/textEditor/Editor";
+import TablesData from "../../layouts/tables/TablesData";
+import SelectOption from "../../layouts/selectOption/SelectOption";
 
 const AboutMe = () => {
     const [content, setContent] = useState("");

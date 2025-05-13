@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AdminLayout from "../../../Pages/admin/Admin";
-import EditorText from "../../modules/textEditor/Editor";
-import SelectOption from "../../modules/selectOption/SelectOption";
+import EditorText from "../../layouts/textEditor/Editor";
+import SelectOption from "../../layouts/selectOption/SelectOption";
 import axios from "axios";
 import { usePage } from "@inertiajs/inertia-react";
 

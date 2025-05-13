@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import AdminLayout from "../../../Pages/admin/Admin";
-import SelectOption from "../../modules/selectOption/SelectOption";
-import Input from "../../modules/inputModule/InputModule";
+import SelectOption from "../../layouts/selectOption/SelectOption";
+import Input from "../../layouts/inputModule/InputModule";
 import { usePage } from "@inertiajs/inertia-react";
 
 const EducationEdit = () => {
